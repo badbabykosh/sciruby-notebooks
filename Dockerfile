@@ -1,5 +1,5 @@
 FROM debian:jessie
-MAINTAINER Daniel Mendler <mail@daniel-mendler.de>
+MAINTAINER BadBabyKosh "https://github.com/badbabykosh"
 
 RUN apt-get update && \
                        # gcc, make, etc.
@@ -23,9 +23,15 @@ RUN apt-get update && \
     apt-get clean && \
     ln -s /usr/bin/libtoolize /usr/bin/libtool # See https://github.com/zeromq/libzmq/issues/1385
 
-RUN pip3 install "ipython[notebook]"
+# ipython
+RUN pip3 install "ipython[notebook]" # write this file to work for either debian or ubuntu
 
-RUN gem install --no-rdoc --no-ri sciruby-full && iruby register
+# iruby
+RUN bash -l -c 'gem install pry iruby'
+# nmatrix
+RUN bash -l -c 'gem install nmatrix -f -- --with-opt-include=/usr/include/atlas'
+# and other gem
+RUN bash -l -c 'gem install nyaplot mikon statsample'
 
 ADD . /notebooks
 WORKDIR /notebooks
