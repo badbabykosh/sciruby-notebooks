@@ -24,7 +24,7 @@ RUN apt-get update && \
     ln -s /usr/bin/libtoolize /usr/bin/libtool # See https://github.com/zeromq/libzmq/issues/1385
 
 # ipython
-RUN pip3 install "ipython[notebook]" # write this file to work for either debian or ubuntu
+RUN pip3 install "ipython[notebook]" # write this file to work for either debian or ubuntu - KOSH
 
 # iruby
 RUN bash -l -c 'gem install pry iruby'
